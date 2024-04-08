@@ -1,0 +1,26 @@
+http://localhost:3001/api/persons/
+
+
+###
+
+http://localhost:3001/info/
+
+###
+# this is a separator 
+
+POST http://localhost:3001/api/persons/
+Content-Type: application/json
+
+{
+    "name": "oye", 
+    "number": "4545454454"
+}
+
+
+###
+# this is a separator 
+
+DELETE  http://localhost:3001/api/persons/1
+Content-Type: application/json
+
+
