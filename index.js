@@ -1,5 +1,22 @@
 const express = require('express')
+// middleware morgan
+const morgan = require('morgan');
 const app = express()
+
+
+
+// middleware (log messages to your console based on the tiny configuration)
+// app.use(morgan('tiny')); //it will print HTTP req num, content-length and time taken in ms
+
+// Define a custom token for Morgan to log request body data
+morgan.token('req-body', (req, res) => {
+  return JSON.stringify(req.body);
+});
+
+// Add Morgan middleware with custom token
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :req-body'));
+
+
 
 // activate the json-parser 
 app.use(express.json())
