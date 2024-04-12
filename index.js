@@ -1,9 +1,11 @@
 const express = require('express')
+const cors = require('cors')
 // middleware morgan
 const morgan = require('morgan');
 const app = express()
 
-
+// take the middleware to use and allow for requests from all origins:
+app.use(cors())
 
 // middleware (log messages to your console based on the tiny configuration)
 // app.use(morgan('tiny')); //it will print HTTP req num, content-length and time taken in ms
@@ -141,7 +143,7 @@ app.get('/info', (request, response) => {
   response.send(responseContent);
 });
   
-  const PORT = 3001
+  const PORT = process.env.PORT || 3001;
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
   })
