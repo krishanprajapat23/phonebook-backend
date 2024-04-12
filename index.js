@@ -7,6 +7,9 @@ const app = express()
 // take the middleware to use and allow for requests from all origins:
 app.use(cors())
 
+// built-in middleware from Express [static] (make Express show static content, index.html and the JavaScript, etc)
+app.use(express.static('dist'))
+
 // middleware (log messages to your console based on the tiny configuration)
 // app.use(morgan('tiny')); //it will print HTTP req num, content-length and time taken in ms
 
