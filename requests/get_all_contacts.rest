@@ -1,5 +1,8 @@
 http://localhost:3001/api/persons/
 
+###
+http://localhost:3001/api/persons/6630da6293e058e5abc8c32a
+
 
 
 
@@ -14,7 +17,16 @@ POST http://localhost:3001/api/persons/
 Content-Type: application/json
 
 {
-    "name": "oye", 
+    "name": "oy", 
+    "number": "4545454454"
+}
+
+###
+PUT http://localhost:3001/api/persons/6630df512b124286514fbe20
+Content-Type: application/json
+
+{
+    "name": "oy put 2", 
     "number": "4545454454"
 }
 
@@ -22,7 +34,7 @@ Content-Type: application/json
 ###
 # this is a separator 
 
-DELETE  http://localhost:3001/api/persons/1
+DELETE  http://localhost:3001/api/persons/6630dfc8ae5eac1ec939a62d
 Content-Type: application/json
 
 
