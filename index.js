@@ -101,7 +101,7 @@ let persons = [
 
   
 //   post request
-  app.post('/api/persons', (request, response) => {
+  app.post('/api/persons', (request, response, next) => {
     // const person = request.body
     // console.log(person)
     // response.json(person)
@@ -144,22 +144,26 @@ let persons = [
 
     person.save().then(savedPerson => {
       response.json(savedPerson)
-    }) 
+    }).catch(error => next(error))
 
   })
 
 
   // put / update with mongo
   app.put('/api/persons/:id', (request, response, next) => {
-    const body = request.body
+    const { name, number } = request.body
   
     const person = {
-      name: body.name,
-      number: body.number,
+      name: name,
+      number: number,
     }
   
-    Person.findByIdAndUpdate(request.params.id, person, { new: true })
-      .then(updatedPerson => {
+    Person.findByIdAndUpdate(
+      request.params.id, 
+      { name, number },
+      { new: true, runValidators: true, context: 'query' }
+    )
+    .then(updatedPerson => {
         response.json(updatedPerson)
       })
       .catch(error => next(error))
@@ -213,6 +217,13 @@ app.get('/info', async (request, response) => {
     response.status(500).send('Internal Server Error');
   }
 });
+
+
+// for user ip
+app.get('/user-ip', (request, response) => {
+  const userIP = request.ip;
+  response.send(`Your IP address is: ${userIP}`);
+});
   
 
 
@@ -237,7 +248,9 @@ const errorHandler = (error, request, response, next) => {
 
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' })
-  } 
+  } else if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message })
+  }
 
   next(error)
 }

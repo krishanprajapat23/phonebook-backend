@@ -1,7 +1,7 @@
 http://localhost:3001/api/persons/
 
 ###
-http://localhost:3001/api/persons/6630da6293e058e5abc8c32a
+http://localhost:3001/api/persons/6630d628beab9536f62ab82c
 
 
 
@@ -11,23 +11,26 @@ http://localhost:3001/api/persons/6630da6293e058e5abc8c32a
 http://localhost:3001/info/
 
 ###
+http://localhost:3001//user-ip/
+
+###
 # this is a separator 
 
 POST http://localhost:3001/api/persons/
 Content-Type: application/json
 
 {
-    "name": "oy", 
-    "number": "4545454454"
+    "name": "oyrest", 
+    "number": "92222222222222"
 }
 
 ###
-PUT http://localhost:3001/api/persons/6630df512b124286514fbe20
+PUT http://localhost:3001/api/persons/6631d3fdde63443f247a0f47
 Content-Type: application/json
 
 {
-    "name": "oy put 2", 
-    "number": "4545454454"
+    "name": "oyrest", 
+    "number": "222222222222"
 }
 
 
